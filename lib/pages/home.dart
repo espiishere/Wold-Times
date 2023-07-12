@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "dart:convert";
 
 
 
@@ -11,14 +12,21 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Map data = {}; //Map Error
+  Object? parameters;
    
   
   
 
   @override
   Widget build(BuildContext context) {
-    
-    ModalRoute.of(context)!.settings.arguments; //Map error?
+    //---------------------------------------------------------
+    parameters = ModalRoute.of(context)!.settings.arguments;
+    Map data = jsonDecode(jsonEncode(parameters));
+    //section of code that's giving the Map Error 
+    //---------------------------------------------------------
+
+
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -44,7 +52,7 @@ class _HomeState extends State<Home> {
           ]),
           SizedBox (height: 20),
           Text(
-            data["time"], //This is where the Error is happening 
+            data["time"], //This is where the Error is happening for data map 
             style: TextStyle(
               fontSize: 66,
             ),
